@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { AgGridReact } from 'ag-grid-react';
+
+
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import axios from 'axios';
@@ -44,6 +46,9 @@ class Report extends Component{
           .catch(function (error) {
             console.log(error);
           })
+
+
+         
       }
      
       
@@ -59,7 +64,21 @@ class Report extends Component{
         width: '1000px' }}
       >
           <h4>List of Stolen Bikes</h4>
-        <AgGridReact
+        <AgGridReact 
+            modules={this.state.modules}
+            columnDefs={this.state.columnDefs}
+            autoGroupColumnDef={this.state.autoGroupColumnDef}
+            defaultColDef={this.state.defaultColDef}
+            suppressRowClickSelection={true}
+            groupSelectsChildren={true}
+            debug={true}
+            rowSelection={this.state.rowSelection}
+            rowGroupPanelShow={this.state.rowGroupPanelShow}
+            pivotPanelShow={this.state.pivotPanelShow}
+            enableRangeSelection={true}
+            pagination={true}
+            paginationPageSize={10}
+            onGridReady={this.onGridReady}
           columnDefs={this.state.columnDefs}
           rowData={this.state.result}>
         </AgGridReact>
